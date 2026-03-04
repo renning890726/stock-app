@@ -33,7 +33,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-          cache: 'pnpm'
+          # cache: 'pnpm'  <-- 移除这行，因为没有 lock 文件会导致报错
 
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
