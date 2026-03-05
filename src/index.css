@@ -1,297 +1,76 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
 
-body {
-  min-width: 320px;
-  min-height: 100vh;
-}
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
 
-#root {
-  width: 100%;
-  min-height: 100vh;
-}
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
 
-.app {
-  width: 100%;
-  min-height: 100vh;
-  padding: 20px;
-}
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 30px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid #333;
-}
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
 
-.header h1 {
-  font-size: 2rem;
-  color: #007bff;
-}
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
 
-.search-bar {
-  display: flex;
-  gap: 10px;
-}
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
 
-.search-bar input {
-  padding: 8px 12px;
-  border: 1px solid #444;
-  border-radius: 4px;
-  background-color: #333;
-  color: white;
-  font-size: 14px;
-}
-
-.search-bar button {
-  padding: 8px 16px;
-  border: none;
-  border-radius: 4px;
-  background-color: #007bff;
-  color: white;
-  font-size: 14px;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.search-bar button:hover {
-  background-color: #0069d9;
-}
-
-.main-content {
-  display: grid;
-  grid-template-columns: 1fr 300px;
-  gap: 30px;
-  margin-bottom: 30px;
-}
-
-.stock-chart {
-  background-color: #333;
-  border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-}
-
-.stock-info {
-  background-color: #333;
-  border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-}
-
-.stock-info h2 {
-  font-size: 1.5rem;
-  margin-bottom: 20px;
-  color: #007bff;
-}
-
-.stock-info-item {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 12px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid #444;
-}
-
-.stock-info-item:last-child {
-  border-bottom: none;
-  margin-bottom: 0;
-  padding-bottom: 0;
-}
-
-.stock-info-label {
-  font-size: 14px;
-  color: #999;
-}
-
-.stock-info-value {
-  font-size: 14px;
-  font-weight: 500;
-}
-
-.stock-info-value.positive {
-  color: #28a745;
-}
-
-.stock-info-value.negative {
-  color: #dc3545;
-}
-
-.trade-section {
-  background-color: #333;
-  border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-  margin-top: 30px;
-}
-
-.trade-section h2 {
-  font-size: 1.5rem;
-  margin-bottom: 20px;
-  color: #007bff;
-}
-
-.trade-form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.trade-form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.trade-form-group label {
-  font-size: 14px;
-  color: #999;
-}
-
-.trade-form-group input {
-  padding: 8px 12px;
-  border: 1px solid #444;
-  border-radius: 4px;
-  background-color: #222;
-  color: white;
-  font-size: 14px;
-}
-
-.trade-buttons {
-  display: flex;
-  gap: 10px;
-  margin-top: 10px;
-}
-
-.trade-buttons button {
-  flex: 1;
-  padding: 10px;
-  border: none;
-  border-radius: 4px;
-  font-size: 14px;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.trade-buttons button.buy {
-  background-color: #28a745;
-  color: white;
-}
-
-.trade-buttons button.buy:hover {
-  background-color: #218838;
-}
-
-.trade-buttons button.sell {
-  background-color: #dc3545;
-  color: white;
-}
-
-.trade-buttons button.sell:hover {
-  background-color: #c82333;
-}
-
-.watchlist {
-  background-color: #333;
-  border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-}
-
-.watchlist h2 {
-  font-size: 1.5rem;
-  margin-bottom: 20px;
-  color: #007bff;
-}
-
-.watchlist-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 12px;
-  padding: 10px;
-  background-color: #222;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.watchlist-item:hover {
-  background-color: #2a2a2a;
-}
-
-.watchlist-item-info {
-  display: flex;
-  flex-direction: column;
-}
-
-.watchlist-item-symbol {
-  font-size: 16px;
-  font-weight: 500;
-}
-
-.watchlist-item-name {
-  font-size: 12px;
-  color: #999;
-}
-
-.watchlist-item-price {
-  text-align: right;
-}
-
-.watchlist-item-current {
-  font-size: 16px;
-  font-weight: 500;
-}
-
-.watchlist-item-change {
-  font-size: 12px;
-}
-
-.watchlist-item-change.positive {
-  color: #28a745;
-}
-
-.watchlist-item-change.negative {
-  color: #dc3545;
-}
-
-@media (max-width: 768px) {
-  .main-content {
-    grid-template-columns: 1fr;
+    --radius: 0.5rem;
   }
-  
-  .header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 15px;
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
   }
-  
-  .search-bar {
-    width: 100%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
   }
-  
-  .search-bar input {
-    flex: 1;
+  body {
+    @apply bg-background text-foreground;
   }
 }
