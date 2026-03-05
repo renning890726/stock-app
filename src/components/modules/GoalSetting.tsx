@@ -37,19 +37,6 @@ export const GoalSetting = () => {
               </SelectContent>
             </Select>
           </div>
-
-          <div className="space-y-2">
-            <Label>AI 模型选择</Label>
-            <Select defaultValue="doubao">
-              <SelectTrigger>
-                <SelectValue placeholder="选择分析模型" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="doubao">豆包 (Doubao-seed-1-8-251228)</SelectItem>
-                <SelectItem value="gpt4">GPT-4 (OpenAI)</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
           
           <Button className="w-full">保存配置</Button>
         </CardContent>
