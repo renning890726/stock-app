@@ -38,13 +38,13 @@ jobs:
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
 
-      - name: Build
+      - name: Build with Next.js
         run: pnpm run build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist
+          path: ./out  # Next.js 静态导出的默认目录是 out
 
   # 部署工作流
   deploy:
