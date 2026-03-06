@@ -1,0 +1,62 @@
+version: '3.8'
+
+services:
+  # PostgreSQL 数据库
+  postgres:
+    image: postgres:14-alpine
+    container_name: stock-assistant-db
+    environment:
+      POSTGRES_USER: stockuser
+      POSTGRES_PASSWORD: stockpass123
+      POSTGRES_DB: stock_assistant
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - stock-network
+    restart: unless-stopped
+
+  # Python Akshare 服务
+  stock-service:
+    build:
+      context: ./stock-service
+      dockerfile: Dockerfile
+    container_name: stock-assistant-python
+    ports:
+      - "9001:9001"
+    environment:
+      - PYTHONUNBUFFERED=1
+    networks:
+      - stock-network
+    restart: unless-stopped
+    depends_on:
+      - postgres
+
+  # Next.js 应用
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: stock-assistant-app
+    ports:
+      - "5000:5000"
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=postgresql://stockuser:stockpass123@postgres:5432/stock_assistant
+      - STOCK_SERVICE_URL=http://stock-service:9001
+      - TZ=Asia/Shanghai
+    depends_on:
+      - postgres
+      - stock-service
+    networks:
+      - stock-network
+    restart: unless-stopped
+
+volumes:
+  postgres-data:
+    driver: local
+
+networks:
+  stock-network:
+    driver: bridge
